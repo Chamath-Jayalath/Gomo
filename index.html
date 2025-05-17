@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gomo Pvt Ltd -  Zoom & Webinar Licenses</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #4a6fa5;
+            --secondary: #166088;
+            --light: #eff7ff;
+            --dark: #1a365d;
+            --accent: #4fc3f7;
+            --webinar: #ff6b6b;
+            --zoom: #4ecdc4;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #2d3748;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin: 5px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-zoom {
+            background-color: var(--zoom);
+        }
+        
+        .btn-webinar {
+            background-color: var(--webinar);
+        }
+        
+        /* Products Section */
+        .add-to-cart {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #25D366; /* WhatsApp green */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+        .products {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #4a5568;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .product-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab-btn {
+            padding: 12px 25px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            color: #666;
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn.active {
+            color: var(--primary);
+        }
+        
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            border: 1px solid #e2e8f0;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .popular-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--accent);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 2;
+        }
+        
+        .product-img {
+            height: 200px;
+            overflow: hidden;
+            background-color: #f0f4f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .product-img img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .product-info p {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 14px;
+            min-height: 60px;
+        }
+        
+        .product-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .price {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        
+        .price.zoom {
+            color: var(--zoom);
+        }
+        
+        .price.webinar {
+            color: var(--webinar);
+        }
+        
+        .price small {
+            font-size: 14px;
+            color: #718096;
+            font-weight: normal;
+        }
+        
+        .add-to-cart {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .add-to-cart:hover {
+            background-color: var(--dark);
+        }
+        
+        .license-badge {
+            background-color: var(--accent);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        
+        .zoom-badge {
+            background-color: var(--zoom);
+        }
+        
+        .webinar-badge {
+            background-color: var(--webinar);
+        }
+        
+        /* Features Section */
+        .features {
+            background-color: var(--primary);
+            color: white;
+            padding: 80px 0;
+        }
+        
+        .features .section-title h2 {
+            color: white;
+        }
+        
+        .features .section-title p {
+            color: #ebf8ff;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #cbd5e0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #a0aec0;
+            font-size: 14px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .product-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .tab-btn {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+            
+           
+
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+  
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Gomo <span>Pvt Ltd</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#licenses">Licenses</a></li>
+                    <li><a href="#features">Why Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1> Zoom Meetings & Webinar Licenses</h1>
+            <p>Authorized Reseller with bulk discounts for businesses. Get Zoom meeting licenses and Webinar add-ons at competitive prices.</p>
+            <div>
+                <a href="#zoom-licenses" class="btn btn-zoom">Zoom Licenses</a>
+                <a href="#webinar-licenses" class="btn btn-webinar">Webinar Licenses</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- License Products Section -->
+    <section class="products" id="licenses">
+        <div class="container">
+            <div class="section-title">
+                <h2>License Packages</h2>
+                <p>Choose the perfect Reseline license package for your organization's needs. All packages include 1 year of support.</p>
+            </div>
+            
+            <div class="product-tabs">
+                <button class="tab-btn active" onclick="openTab(event, 'zoom-licenses')">Zoom Licenses</button>
+                <button class="tab-btn" onclick="openTab(event, 'webinar-licenses')">Webinar Licenses</button>
+            </div>
+            
+            <!-- Zoom Licenses Tab -->
+            <div id="zoom-licenses" class="tab-content active">
+                <div class="product-grid">
+                    <!-- 100p Package -->
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="Logo.jpg" alt="100 Zoom Licenses">
+                        </div>
+                        <div class="product-info">
+                            <span class="license-badge zoom-badge">Zoom License</span>
+                            <h3>Starter Package (100p)</h3>
+                            <p>Perfect for small teams. 100 Zoom licenses with basic support and standard features.</p>
+                            <div class="product-price">
+                                <span class="price zoom">LKR 3800</span>
+                                
+                                <a 
+                                class="add-to-cart" 
+                                href="https://wa.me/+94776633038?text=Hi%2C%20I'm%20interested%20in%20the%20Starter%20Package%20(100p)" 
+                                target="_blank">
+                                Buy Now
+                            </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 300p Package -->
+                    <div class="product-card">
+                        <div class="popular-tag">Most Popular</div>
+                        <div class="product-img">
+                            <img src="Logo.jpg" alt="300 Zoom Licenses">
+                        </div>
+                        <div class="product-info">
+                            <span class="license-badge zoom-badge">Zoom License</span>
+                            <h3>Business Package (300p)</h3>
+                            <p>Ideal for growing companies. 300 Zoom licenses with priority support.</p>
+                            <div class="product-price">
+                                <span class="price zoom">LKR 7500</span>
+
+                                <a 
+                                class="add-to-cart" 
+                                href="https://wa.me/+94776633038?text=Hi%2C%20I'm%20interested%20in%20the%20Starter%20Package%20(300p)" 
+                                target="_blank">
+                                Buy Now
+                            </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 500p Package -->
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="Logo.jpg" alt="500 Zoom Licenses">
+                        </div>
+                        <div class="product-info">
+                            <span class="license-badge zoom-badge">Zoom License</span>
+                            <h3>Enterprise Package (500p)</h3>
+                            <p>For large organizations. 500 Zoom licenses with premium support.</p>
+                            <div class="product-price">
+                                <span class="price zoom">LKR 14500</span>
+                                
+                                <a 
+                                class="add-to-cart" 
+                                href="https://wa.me/+94776633038?text=Hi%2C%20I'm%20interested%20in%20the%20Starter%20Package%20(500p)" 
+                                target="_blank">
+                                Buy Now
+                            </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 1000p Package -->
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="Logo.jpg" alt="1000 Zoom Licenses">
+                        </div>
+                        <div class="product-info">
+                            <span class="license-badge zoom-badge">Zoom License</span>
+                            <h3>Corporate Package (1000p)</h3>
+                            <p>Maximum value for corporations. 1000 Zoom licenses with dedicated manager.</p>
+                            <div class="product-price">
+                                <span class="price zoom">LKR 35000</span>
+                                
+                                <a 
+                                class="add-to-cart" 
+                                href="https://wa.me/+94776633038?text=Hi%2C%20I'm%20interested%20in%20the%20Starter%20Package%20(1000p)" 
+                                target="_blank">
+                                Buy Now
+                            </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Webinar Licenses Tab -->
+            <div id="webinar-licenses" class="tab-content">
+                <div class="product-grid">
+                    <!-- Webinar 100 -->
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="Logo.jpg" alt="100 Webinar Licenses">
+                        </div>
+                        <div class="product-info">
+                            <span class="license-badge webinar-badge">Webinar License</span>
+                            <h3>Webinar Starter (100p)</h3>
+                            <p>Basic webinar package for small events. 100 participant licenses.</p>
+                            <div class="product-price">
+                                <span class="price webinar">LKR 4900</span>
+                                <a 
+                                    class="add-to-cart" 
+                                    href="https://wa.me/94776633038?text=Hi%2C%20I'm%20interested%20in%20the%20Webinar%20Starter%20Package%20(100p)" 
+                                    target="_blank">
+                                    Buy Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="popular-tag">Best Value</div>
+                        <div class="product-img">
+                            <img src="Logo.jpg" alt="300 Webinar Licenses">
+                        </div>
+                        <div class="product-info">
+                            <span class="license-badge webinar-badge">Webinar License</span>
+                            <h3>Webinar Pro (300p)</h3>
+                            <p>Professional webinar package with Q&A and polling features.</p>
+                            <div class="product-price">
+                                <span class="price webinar">LKR 12900</span>
+                                <a 
+                                    class="add-to-cart" 
+                                    href="https://wa.me/94776633038?text=Hi%2C%20I'm%20interested%20in%20the%20Webinar%20Pro%20Package%20(300p)" 
+                                    target="_blank">
+                                    Buy Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="Logo.jpg" alt="500 Webinar Licenses">
+                        </div>
+                        <div class="product-info">
+                            <span class="license-badge webinar-badge">Webinar License</span>
+                            <h3>Webinar Enterprise (500p)</h3>
+                            <p>Large-scale webinar solution with branding and analytics.</p>
+                            <div class="product-price">
+                                <span class="price webinar">LKR 20000</span>
+                                <a 
+                                    class="add-to-cart" 
+                                    href="https://wa.me/94776633038?text=Hi%2C%20I'm%20interested%20in%20the%20Webinar%20Enterprise%20Package%20(500p)" 
+                                    target="_blank">
+                                    Buy Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                     <!-- Webinar 1000 -->
+        <div class="product-card">
+            <div class="product-img">
+                <img src="Logo.jpg" alt="1000 Webinar Licenses">
+            </div>
+            <div class="product-info">
+                <span class="license-badge webinar-badge">Webinar License</span>
+                <h3>Webinar Premium (1000p)</h3>
+                <p>Maximum capacity webinar package with full features.</p>
+                <div class="product-price">
+                    <span class="price webinar">LKR 35000</span>
+                    <a 
+                        class="add-to-cart" 
+                        href="https://wa.me/94776633038?text=Hi%2C%20I'm%20interested%20in%20the%20Webinar%20Premium%20Package%20(1000p)" 
+                        target="_blank">
+                        Buy Now
+                    </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Gomo</h2>
+                <p>As an authorized Reseline license reseller, we provide exceptional value and service.</p>
+            </div>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-certificate"></i></div>
+                    <h3>Authorized Reseller</h3>
+                    <p>100% authentic licenses with direct authorization from Reseline.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-tags"></i></div>
+                    <h3>Competitive Pricing</h3>
+                    <p>Best prices in the market with volume discounts.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-headset"></i></div>
+                    <h3>Local Support</h3>
+                    <p>Dedicated support team available during business hours.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-file-contract"></i></div>
+                    <h3>Flexible Terms</h3>
+                    <p>Annual or monthly billing options available.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Gomo Pvt Ltd</h3>
+                    <p>Authorized Reseline License Reseller</p>
+                    <p>Enterprise software solutions since 2019.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>License Packages</h3>
+                    <ul>
+                        <li><a href="#zoom-licenses">Zoom Licenses</a></li>
+                        <li><a href="#webinar-licenses">Webinar Licenses</a></li>
+                        <li><a href="#zoom-licenses">Bundled Packages</a></li>
+                        <li><a href="#webinar-licenses">Custom Solutions</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Colombo</li>
+                        <li><i class="fas fa-phone"></i> +91 80 1234 5678</li>
+                        <li><i class="fas fa-envelope"></i> sales@gomo.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 9AM-6PM IST</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Gomo Private Limited. All rights reserved.</p>
+                <p>Reseline products are registered trademarks of Reseline Technologies. Gomo Pvt Ltd is an authorized reseller.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function openTab(evt, tabName) {
+            // Hide all tab contents
+            var tabcontents = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabcontents.length; i++) {
+                tabcontents[i].classList.remove("active");
+            }
+            
+            // Remove active class from all tab buttons
+            var tabbuttons = document.getElementsByClassName("tab-btn");
+            for (var i = 0; i < tabbuttons.length; i++) {
+                tabbuttons[i].classList.remove("active");
+            }
+            
+            // Show the current tab and add active class to the button
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+  
+
+</body>
+</html>
