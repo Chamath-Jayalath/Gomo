@@ -8,11 +8,10 @@
   <!-- Google Fonts & FontAwesome Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Sinhala:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
-    /* ==================== GLOBAL STYLES ==================== */
     :root {
       --primary: #2563eb;
       --primary-hover: #1d4ed8;
@@ -25,14 +24,14 @@
       --text: #0f172a;
       --text-muted: #64748b;
       --radius: 12px;
-      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Plus Jakarta Sans', 'Noto Sans Sinhala', sans-serif;
     }
 
     body {
@@ -45,7 +44,7 @@
 
     /* ==================== SIDEBAR ==================== */
     aside {
-      width: 260px;
+      width: 270px;
       background-color: var(--surface);
       border-right: 1px solid var(--border);
       display: flex;
@@ -58,7 +57,7 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       padding-left: 8px;
     }
 
@@ -72,23 +71,21 @@
       align-items: center;
       justify-content: center;
       font-size: 1.2rem;
-      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
     }
 
     .brand-title {
       font-weight: 800;
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       background: linear-gradient(135deg, #1e293b, var(--primary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .brand-subtitle {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       color: var(--text-muted);
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
     }
 
     .nav-list {
@@ -122,24 +119,28 @@
       color: white;
     }
 
-    .grade-badge-container {
+    .controls-box {
       margin-top: auto;
       background-color: #f1f5f9;
       border-radius: var(--radius);
-      padding: 14px;
+      padding: 12px;
       border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
 
-    .grade-badge-label {
-      font-size: 0.75rem;
+    .control-group label {
+      font-size: 0.72rem;
       color: var(--text-muted);
-      margin-bottom: 6px;
-      font-weight: 600;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 4px;
     }
 
-    select.grade-select {
+    select.select-box {
       width: 100%;
-      padding: 8px;
+      padding: 7px;
       border-radius: 6px;
       border: 1px solid var(--border);
       background: white;
@@ -147,6 +148,7 @@
       color: var(--text);
       outline: none;
       cursor: pointer;
+      font-size: 0.85rem;
     }
 
     /* ==================== MAIN CONTENT ==================== */
@@ -185,29 +187,6 @@
       gap: 6px;
     }
 
-    .btn {
-      padding: 8px 14px;
-      border-radius: 6px;
-      border: none;
-      font-weight: 600;
-      font-size: 0.85rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.2s;
-    }
-
-    .btn-primary {
-      background-color: var(--primary);
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background-color: var(--primary-hover);
-    }
-
-    /* Content Panes */
     .view-pane {
       display: none;
       flex: 1;
@@ -220,7 +199,7 @@
       flex-direction: column;
     }
 
-    /* ==================== TUTOR CHAT VIEW ==================== */
+    /* Chat View */
     #view-chat {
       padding: 0;
     }
@@ -282,7 +261,7 @@
       padding: 12px 16px;
       border-radius: 12px;
       border: 1px solid var(--border);
-      line-height: 1.5;
+      line-height: 1.6;
       font-size: 0.92rem;
       box-shadow: 0 1px 2px rgba(0,0,0,0.05);
     }
@@ -335,11 +314,25 @@
       font-size: 0.95rem;
     }
 
-    .chat-input:focus {
-      border-color: var(--primary);
+    .btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      background-color: var(--primary);
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    /* ==================== SYLLABUS BROWSER ==================== */
+    .btn:hover {
+      background-color: var(--primary-hover);
+    }
+
+    /* Syllabus Explorer */
     .grid-2 {
       display: grid;
       grid-template-columns: 320px 1fr;
@@ -377,17 +370,6 @@
       border-color: var(--primary);
     }
 
-    .topic-item-title {
-      font-weight: 700;
-      font-size: 0.9rem;
-    }
-
-    .topic-item-sub {
-      font-size: 0.75rem;
-      opacity: 0.8;
-      margin-top: 4px;
-    }
-
     .content-card {
       background: white;
       border: 1px solid var(--border);
@@ -396,7 +378,7 @@
       overflow-y: auto;
     }
 
-    /* ==================== MCQ QUIZ SIMULATOR ==================== */
+    /* Quiz */
     .quiz-card {
       background: white;
       border: 1px solid var(--border);
@@ -419,9 +401,6 @@
       font-weight: 500;
       font-size: 0.95rem;
       transition: all 0.2s;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
     }
 
     .option-btn:hover {
@@ -441,7 +420,7 @@
       color: #b91c1c;
     }
 
-    /* ==================== FORMULAS & CHEAT SHEET ==================== */
+    /* Formulas */
     .cheat-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -455,12 +434,6 @@
       padding: 16px;
     }
 
-    .cheat-card h4 {
-      color: var(--primary);
-      margin-bottom: 8px;
-      font-size: 0.95rem;
-    }
-
     .formula-box {
       background: #f8fafc;
       border: 1px dashed var(--border);
@@ -470,13 +443,6 @@
       font-weight: 700;
       color: #1e293b;
       margin: 8px 0;
-    }
-
-    pre, code {
-      background: #f1f5f9;
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-family: monospace;
     }
   </style>
 </head>
@@ -490,35 +456,45 @@
       </div>
       <div>
         <div class="brand-title">Gomo Buddy</div>
-        <div class="brand-subtitle">SL O/L Science AI</div>
+        <div class="brand-subtitle" id="sidebarSub">SL O/L Science AI</div>
       </div>
     </div>
 
     <ul class="nav-list">
       <li class="nav-item active" onclick="switchView('chat')">
-        <i class="fa-solid fa-robot"></i> AI Tutor Buddy
+        <i class="fa-solid fa-robot"></i> <span id="navChat">AI Tutor Buddy</span>
       </li>
       <li class="nav-item" onclick="switchView('syllabus')">
-        <i class="fa-solid fa-book-open"></i> Syllabus Explorer
+        <i class="fa-solid fa-book-open"></i> <span id="navSyllabus">Syllabus Explorer</span>
       </li>
       <li class="nav-item" onclick="switchView('quiz')">
-        <i class="fa-solid fa-circle-question"></i> MCQ Quiz Practice
+        <i class="fa-solid fa-circle-question"></i> <span id="navQuiz">MCQ Quiz Practice</span>
       </li>
       <li class="nav-item" onclick="switchView('formulas')">
-        <i class="fa-solid fa-flask"></i> Formulas & Key Terms
+        <i class="fa-solid fa-flask"></i> <span id="navFormulas">Formulas & Key Terms</span>
       </li>
     </ul>
 
-    <div class="grade-badge-container">
-      <div class="grade-badge-label">Select Your Grade:</div>
-      <select id="gradeSelect" class="grade-select" onchange="onGradeChange()">
-        <option value="11">Grade 11 (O/L Final)</option>
-        <option value="10">Grade 10 (O/L Core)</option>
-        <option value="9">Grade 9 (Secondary)</option>
-        <option value="8">Grade 8 (Secondary)</option>
-        <option value="7">Grade 7 (Secondary)</option>
-        <option value="6">Grade 6 (Secondary)</option>
-      </select>
+    <div class="controls-box">
+      <div class="control-group">
+        <label id="lblLang">Language / භාෂාව:</label>
+        <select id="langSelect" class="select-box" onchange="onLanguageChange()">
+          <option value="en">English Medium</option>
+          <option value="si">සිංහල මාධ්‍ය (Sinhala)</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label id="lblGrade">Select Grade / ශ්‍රේණිය:</label>
+        <select id="gradeSelect" class="select-box" onchange="onGradeChange()">
+          <option value="11">Grade 11 (O/L Final)</option>
+          <option value="10">Grade 10 (O/L Core)</option>
+          <option value="9">Grade 9 (Secondary)</option>
+          <option value="8">Grade 8 (Secondary)</option>
+          <option value="7">Grade 7 (Secondary)</option>
+          <option value="6">Grade 6 (Secondary)</option>
+        </select>
+      </div>
     </div>
   </aside>
 
@@ -526,7 +502,7 @@
   <main>
     <header>
       <div class="header-title" id="headerTitle">Gomo Buddy - Science AI Companion</div>
-      <div class="mode-badge"><i class="fa-solid fa-circle-check"></i> Sri Lanka NIE Syllabus Ready</div>
+      <div class="mode-badge" id="modeBadge"><i class="fa-solid fa-circle-check"></i> NIE Syllabus Ready</div>
     </header>
 
     <!-- 1. AI TUTOR VIEW -->
@@ -535,23 +511,23 @@
         <div class="chat-messages" id="chatMessages">
           <div class="message ai">
             <div class="avatar ai"><i class="fa-solid fa-robot"></i></div>
-            <div class="bubble">
+            <div class="bubble" id="welcomeBubble">
               Ayubowan! I am <b>Gomo Buddy</b>, your Sri Lankan local syllabus Science study partner! 🇱🇰✨<br><br>
               How can I help you prepare for your term test or O/L exam today? Ask me any topic from Grade 6 to Grade 11 Science!
             </div>
           </div>
         </div>
 
-        <div class="quick-prompts">
-          <div class="chip" onclick="sendQuickPrompt('Explain Photosynthesis step-by-step for O/L Science')">🌱 Photosynthesis Explained</div>
-          <div class="chip" onclick="sendQuickPrompt('Give me 3 O/L level MCQs on Electricity with explanations')">⚡ Electricity MCQs</div>
-          <div class="chip" onclick="sendQuickPrompt('Explain Newton laws of motion with daily Sri Lankan examples')">🏎️ Newton's Laws</div>
-          <div class="chip" onclick="sendQuickPrompt('How to write answers properly for Part II O/L Science paper?')">📝 O/L Paper Tips</div>
+        <div class="quick-prompts" id="quickPromptsContainer">
+          <div class="chip" onclick="sendQuickPrompt('photosynthesis')">🌱 Photosynthesis</div>
+          <div class="chip" onclick="sendQuickPrompt('electricity')">⚡ Electricity MCQs</div>
+          <div class="chip" onclick="sendQuickPrompt('newton')">🏎️ Newton's Laws</div>
+          <div class="chip" onclick="sendQuickPrompt('tips')">📝 O/L Paper Tips</div>
         </div>
 
         <div class="chat-input-area">
           <input type="text" id="userInput" class="chat-input" placeholder="Ask Gomo Buddy anything about local syllabus Science..." onkeydown="if(event.key==='Enter') sendMessage()">
-          <button class="btn btn-primary" onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i> Send</button>
+          <button class="btn" onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i> <span id="sendBtnText">Send</span></button>
         </div>
       </div>
     </div>
@@ -573,7 +549,7 @@
 
     <!-- 4. FORMULAS VIEW -->
     <div id="view-formulas" class="view-pane">
-      <h2 style="margin-bottom: 16px;">Sri Lanka O/L Science Quick Revision Sheet</h2>
+      <h2 id="formulaHeader" style="margin-bottom: 16px;">Sri Lanka O/L Science Quick Revision Sheet</h2>
       <div class="cheat-grid" id="cheatGrid"></div>
     </div>
   </main>
@@ -581,106 +557,171 @@
   <!-- ==================== JAVASCRIPT LOGIC ==================== -->
   <script>
     let currentGrade = '11';
+    let currentLang = 'en';
 
-    // Sri Lankan NIE English Medium Science Syllabus Database
+    // Multilingual UI Translations
+    const UI_TEXT = {
+      en: {
+        subtitle: "SL O/L Science AI",
+        navChat: "AI Tutor Buddy",
+        navSyllabus: "Syllabus Explorer",
+        navQuiz: "MCQ Quiz Practice",
+        navFormulas: "Formulas & Key Terms",
+        lblLang: "Language / භාෂාව:",
+        lblGrade: "Select Grade / ශ්‍රේණිය:",
+        headerTitle: "Gomo Buddy - Science AI Companion",
+        modeBadge: "NIE Syllabus Ready",
+        inputPlaceholder: "Ask Gomo Buddy anything about local syllabus Science...",
+        sendBtn: "Send",
+        welcome: "Ayubowan! I am <b>Gomo Buddy</b>, your Sri Lankan local syllabus Science study partner! 🇱🇰✨<br><br>How can I help you prepare for your term test or O/L exam today? Ask me any topic from Grade 6 to Grade 11 Science!",
+        selectTopicPrompt: "Select a topic from the left syllabus list to review notes.",
+        formulaHeading: "Sri Lanka O/L Science Quick Revision Sheet"
+      },
+      si: {
+        subtitle: "සා.පෙ. විද්‍යා සහායක",
+        navChat: "AI ගුරු සහායක",
+        navSyllabus: "විෂয় නිර්දේශය",
+        navQuiz: "බහුවරණ ප්‍රශ්න (MCQ)",
+        navFormulas: "සූත්‍ර සහ ප්‍රධාන පද",
+        lblLang: "භාෂාව / Language:",
+        lblGrade: "ශ්‍රේණිය තෝරන්න / Grade:",
+        headerTitle: "ගෝමෝ බඩී - විද්‍යා අධ්‍යයන සහායක",
+        modeBadge: "ජාතික ආයතන විෂය මාලාව",
+        inputPlaceholder: "විද්‍යාව පිළිබඳ ඕනෑම ප්‍රශ්නයක් අසන්න...",
+        sendBtn: "යවන්න",
+        welcome: "ආයුබෝවන්! මම <b>Gomo Buddy</b>, ඔබේ ශ්‍රී ලංකා විද්‍යා අධ්‍යයන සහායකයා! 🇱🇰✨<br><br>අද ඔබට කුමන විද්‍යා පාඩමක හෝ O/L විභාග ගැටළුවක් විසඳා ගැනීමට උදව් අවශ්‍යද?",
+        selectTopicPrompt: "සටහන් බැලීමට වම්පස ලැයිස්තුවෙන් මාතෘකාවක් තෝරන්න.",
+        formulaHeading: "ශ්‍රී ලංකා O/L විද්‍යා සූත්‍ර හා කෙටි සටහන්"
+      }
+    };
+
+    // Syllabus Database (English & Sinhala)
     const SYLLABUS_DATA = {
-      "11": [
+      en: {
+        "11": [
+          {
+            id: "g11-1",
+            title: "Chemical Reactions & Stoichiometry",
+            summary: "Balancing equations, mole concept, and calculating molar mass.",
+            notes: `<h4>1. The Mole Concept</h4><p>One mole contains 6.022 × 10<sup>23</sup> particles (Avogadro's Constant).</p><p><b>Formula:</b> Moles (n) = Mass (g) / Molar Mass (g/mol)</p>`
+          },
+          {
+            id: "g11-2",
+            title: "Current Electricity & Circuits",
+            summary: "Ohm's Law, Equivalent Resistance, and Electric Power.",
+            notes: `<h4>1. Ohm's Law</h4><p>V = I × R (Voltage = Current × Resistance)</p><p><b>Series:</b> R = R₁ + R₂</p>`
+          }
+        ],
+        "10": [
+          {
+            id: "g10-1",
+            title: "Biological Diversity & Classification",
+            summary: "Five kingdom classification and binomial nomenclature.",
+            notes: `<h4>Five Kingdoms</h4><ol><li>Monera</li><li>Protista</li><li>Fungi</li><li>Plantae</li><li>Animalia</li></ol>`
+          }
+        ]
+      },
+      si: {
+        "11": [
+          {
+            id: "g11-1",
+            title: "රසායනික ප්‍රතික්‍රියා සහ මෝල් සංකල්පය",
+            summary: "සමීකරණ තුලනය කිරීම, මෝල් සංකල්පය සහ මෝලර් ස්කන්ධය.",
+            notes: `<h4>1. මෝල් සංකල්පය</h4><p>මෝලක අංශු 6.022 × 10<sup>23</sup> ක් අඩංගු වේ (ඇවගඩ්‍රෝ නියුමිය).</p><p><b>සූත්‍රය:</b> මෝල් ගණන (n) = ස්කන්ධය (g) / මෝලර් ස්කන්ධය (g/mol)</p>`
+          },
+          {
+            id: "g11-2",
+            title: "ධාරා විදුලිය සහ පරිපථ",
+            summary: "ඕම් නියමය, ප්‍රතිරෝධක සහ විදුලි බලය.",
+            notes: `<h4>1. ඕම් නියමය</h4><p>V = I × ර (විභව භේදය = ධාරාව × ප්‍රතිරෝධය)</p>`
+          }
+        ],
+        "10": [
+          {
+            id: "g10-1",
+            title: "ජීවී විවිධත්වය සහ වර්ගීකරණය",
+            summary: "රාජධානි පහේ වර්ගීකරණය සහ ද්විපද නාමකරණය.",
+            notes: `<h4>රාජධානි පහ</h4><ol><li>මොනේරා</li><li>ප්‍රොටිස්ටා</li><li>දිලීර</li><li>ප්ලාන්ටේ</li><li>ඇනිමාලියා</li></ol>`
+          }
+        ]
+      }
+    };
+
+    const FORMULA_DATA = {
+      en: [
+        { category: "Physics", title: "Ohm's Law", formula: "V = I × R", unit: "V (Volts), I (Amperes), R (Ohms)" },
+        { category: "Physics", title: "Newton's Second Law", formula: "F = m × a", unit: "F (Newtons), m (kg), a (m/s²)" },
+        { category: "Chemistry", title: "Mole Formula", formula: "n = m / M", unit: "m (grams), M (g/mol)" },
+        { category: "Biology", title: "Photosynthesis", formula: "6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂", unit: "Sunlight & Chlorophyll" }
+      ],
+      si: [
+        { category: "භෞතික විද්‍යාව", title: "ඕම් නියමය", formula: "V = I × R", unit: "V (වෝල්ට්), I (ඇම්පියර්), R (ඕම්)" },
+        { category: "භෞතික විද්‍යාව", title: "නිව්ටන්ගේ දෙවන නියමය", formula: "F = m × a", unit: "F (නිව්ටන්), m (කිග්‍රෑ), a (ms⁻²)" },
+        { category: "රසායන විද්‍යාව", title: "මෝල් සූත්‍රය", formula: "n = m / M", unit: "ස්කන්ධය / මෝලර් ස්කන්ධය" },
+        { category: "ජීව විද්‍යාව", title: " ප්‍රභාසංශ්ලේෂණය", formula: "6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂", unit: "හිරු එළිය සහ හරිතප්‍රද ඉදිරියේ" }
+      ]
+    };
+
+    const QUIZ_DATA = {
+      en: [
         {
-          id: "g11-1",
-          title: "Chemical Reactions & Stoichiometry",
-          summary: "Balancing equations, mole concept, and calculating molar mass for O/L Exam.",
-          notes: `<h4>1. The Mole Concept</h4>
-                  <p>One mole contains 6.022 × 10<sup>23</sup> particles (Avogadro's Constant).</p>
-                  <p><b>Formula:</b> Number of Moles (n) = Mass (g) / Molar Mass (g/mol)</p>
-                  <br>
-                  <h4>2. Types of Chemical Reactions</h4>
-                  <ul>
-                    <li><b>Combination:</b> A + B → AB</li>
-                    <li><b>Decomposition:</b> AB → A + B</li>
-                    <li><b>Single Displacement:</b> A + BC → AC + B</li>
-                    <li><b>Double Displacement:</b> AB + CD → AD + CB</li>
-                  </ul>`
+          question: "What is the SI unit of Electric Resistance?",
+          options: ["Volt (V)", "Ampere (A)", "Ohm (Ω)", "Joule (J)"],
+          answer: 2,
+          explanation: "Resistance is measured in Ohms (Ω) according to Ohm's Law (V = I * R)."
         },
         {
-          id: "g11-2",
-          title: "Current Electricity & Circuits",
-          summary: "Ohm's Law, Equivalent Resistance, Electric Power, and Household wiring.",
-          notes: `<h4>1. Ohm's Law</h4>
-                  <p>V = I × R (Voltage = Current × Resistance)</p>
-                  <br>
-                  <h4>2. Resistors in Series & Parallel</h4>
-                  <p><b>Series:</b> R<sub>total</sub> = R₁ + R₂ + R₃</p>
-                  <p><b>Parallel:</b> 1/R<sub>total</sub> = 1/R₁ + 1/R₂ + 1/R₃</p>`
-        },
-        {
-          id: "g11-3",
-          title: "Heredity & Genetics",
-          summary: "DNA structure, Mendel's Laws, Monohybrid Crosses, and Inheritance.",
-          notes: `<h4>1. Mendel's First Law (Law of Segregation)</h4>
-                  <p>Traits are controlled by pairs of alleles which separate during gamete formation.</p>
-                  <p><b>Phenotype:</b> External appearance (e.g., Tall vs Short).</p>
-                  <p><b>Genotype:</b> Genetic constitution (e.g., TT, Tt, tt).</p>`
+          question: "Which gas is released during photosynthesis?",
+          options: ["Carbon Dioxide", "Oxygen", "Nitrogen", "Hydrogen"],
+          answer: 1,
+          explanation: "Plants use CO2 and water in sunlight to generate Glucose and release Oxygen (O2)."
         }
       ],
-      "10": [
+      si: [
         {
-          id: "g10-1",
-          title: "Biological Diversity & Classification",
-          summary: "Five kingdom classification, binomial nomenclature, and plant/animal traits.",
-          notes: `<h4>Five Kingdoms</h4>
-                  <ol>
-                    <li>Monera (Bacteria)</li>
-                    <li>Protista (Amoeba, Paramecium)</li>
-                    <li>Fungi (Mushroom, Yeast)</li>
-                    <li>Plantae (Plants)</li>
-                    <li>Animalia (Animals)</li>
-                  </ol>`
+          question: "විදුලි ප්‍රතිරෝධය මනිනු ලබන SI ඒකකය කුමක්ද?",
+          options: ["වෝල්ට් (V)", "ඇම්පියර් (A)", "ඕම් (Ω)", "ජූල් (J)"],
+          answer: 2,
+          explanation: "ප්‍රතිරෝධය ඕම් (Ω) වලින් මනිනු ලබයි."
         },
         {
-          id: "g10-2",
-          title: "Force & Motion (Mechanics)",
-          summary: "Displacement, Velocity, Acceleration, and Newton's 3 Laws of Motion.",
-          notes: `<h4>Newton's Laws</h4>
-                  <p><b>1st Law:</b> Law of Inertia (An object remains at rest or uniform motion unless acted upon by an external force).</p>
-                  <p><b>2nd Law:</b> F = m × a (Force = Mass × Acceleration).</p>
-                  <p><b>3rd Law:</b> To every action, there is an equal and opposite reaction.</p>`
+          question: "ප්‍රභාසංශ්ලේෂණයේදී මුදාහරිනු ලබන වායුව කුමක්ද?",
+          options: ["කාබන්ඩයොක්සයිඩ්", "ඔක්සිජන්", "නයිට්‍රජන්", "හයිඩ්‍රජන්"],
+          answer: 1,
+          explanation: "ප්‍රභාසංශ්ලේෂණයේදී ග්ලුකෝස් නිෂ්පාදනය වී ඔක්සිජන් වායුව පිටවේ."
         }
       ]
     };
 
-    const FORMULA_DATA = [
-      { category: "Physics", title: "Ohm's Law", formula: "V = I × R", unit: "V (Volts), I (Amperes), R (Ohms)" },
-      { category: "Physics", title: "Newton's Second Law", formula: "F = m × a", unit: "F (Newtons), m (kg), a (m/s²)" },
-      { category: "Physics", title: "Work Done", formula: "W = F × d", unit: "W (Joules), F (N), d (Meters)" },
-      { category: "Physics", title: "Kinetic Energy", formula: "KE = ½ × m × v²", unit: "KE (Joules)" },
-      { category: "Physics", title: "Potential Energy", formula: "PE = m × g × h", unit: "PE (Joules), g = 10 m/s²" },
-      { category: "Chemistry", title: "Mole Formula", formula: "n = m / M", unit: "m (grams), M (g/mol)" },
-      { category: "Chemistry", title: "Concentration", formula: "C = n / V", unit: "C (mol/dm³), V (dm³)" },
-      { category: "Biology", title: "Photosynthesis Equation", formula: "6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂", unit: "In presence of Sunlight & Chlorophyll" }
-    ];
+    function updateUIText() {
+      const t = UI_TEXT[currentLang];
+      document.getElementById('sidebarSub').innerText = t.subtitle;
+      document.getElementById('navChat').innerText = t.navChat;
+      document.getElementById('navSyllabus').innerText = t.navSyllabus;
+      document.getElementById('navQuiz').innerText = t.navQuiz;
+      document.getElementById('navFormulas').innerText = t.navFormulas;
+      document.getElementById('lblLang').innerText = t.lblLang;
+      document.getElementById('lblGrade').innerText = t.lblGrade;
+      document.getElementById('headerTitle').innerText = t.headerTitle;
+      document.getElementById('modeBadge').innerHTML = `<i class="fa-solid fa-circle-check"></i> ${t.modeBadge}`;
+      document.getElementById('userInput').placeholder = t.inputPlaceholder;
+      document.getElementById('sendBtnText').innerText = t.sendBtn;
+      document.getElementById('formulaHeader').innerText = t.formulaHeading;
+    }
 
-    const QUIZ_DATA = [
-      {
-        question: "What is the SI unit of Electric Resistance?",
-        options: ["Volt (V)", "Ampere (A)", "Ohm (Ω)", "Joule (J)"],
-        answer: 2,
-        explanation: "Resistance is measured in Ohms (Ω) according to Ohm's Law (V = I * R)."
-      },
-      {
-        question: "Which gas is released during photosynthesis in green plants?",
-        options: ["Carbon Dioxide", "Oxygen", "Nitrogen", "Hydrogen"],
-        answer: 1,
-        explanation: "Plants use CO2 and water in sunlight to generate Glucose and release Oxygen gas (O2)."
-      },
-      {
-        question: "What is the acceleration due to gravity on Earth's surface (approx O/L value)?",
-        options: ["9.8 / 10 m/s²", "5 m/s²", "15 m/s²", "100 m/s²"],
-        answer: 0,
-        explanation: "Standard acceleration due to gravity g is taken as 9.8 m/s² or rounded to 10 m/s² in SL local O/L exams."
-      }
-    ];
+    function onLanguageChange() {
+      currentLang = document.getElementById('langSelect').value;
+      updateUIText();
+      loadSyllabusView();
+      loadFormulasView();
+      loadQuizView();
+    }
 
-    // Navigation Switch
+    function onGradeChange() {
+      currentGrade = document.getElementById('gradeSelect').value;
+      loadSyllabusView();
+    }
+
     function switchView(viewName) {
       document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.view-pane').forEach(el => el.classList.remove('active'));
@@ -693,12 +734,6 @@
       if (viewName === 'formulas') loadFormulasView();
     }
 
-    function onGradeChange() {
-      currentGrade = document.getElementById('gradeSelect').value;
-      loadSyllabusView();
-    }
-
-    // ==================== TUTOR CHAT LOGIC ====================
     function sendMessage() {
       const input = document.getElementById('userInput');
       const text = input.value.trim();
@@ -707,95 +742,79 @@
       appendMessage('user', text);
       input.value = '';
 
-      const loadingId = appendMessage('ai', '<i>Gomo Buddy is thinking...</i>');
+      const loadingId = appendMessage('ai', currentLang === 'si' ? '<i>ගෝමෝ බඩී සිතමින් සිටී...</i>' : '<i>Gomo Buddy is thinking...</i>');
 
       setTimeout(() => {
-        let reply = `<b>[Gomo Buddy Study Guide - Grade ${currentGrade} Science]:</b><br><br>`;
-        const query = text.toLowerCase();
+        let reply = currentLang === 'si' 
+          ? `<b>[ගෝමෝ බඩී අධ්‍යයන සටහන - ${currentGrade} ශ්‍රේණිය]:</b><br><br>ඔබ අසන ලද කරුණ ${currentGrade} ශ්‍රේණියට අදාළ වැදගත් විද්‍යා මාතෘකාවකි.<br><br>• විභාගය සඳහා මූලික අර්ථදැක්වීම් හොඳින් මතක තබා ගන්න.<br>• රූප සටහන් පැහැදිලිව නම් කරන්න.`
+          : `<b>[Gomo Buddy Study Guide - Grade ${currentGrade} Science]:</b><br><br>That is an important topic for Grade ${currentGrade} Sri Lankan Science!<br><br>• Make sure to review core definitions in your NIE textbook.<br>• Practice past papers and draw labeled diagrams.`;
         
-        if (query.includes('photosynthesis')) {
-          reply += `<b>Photosynthesis</b> is the process by which green plants manufacture glucose using Carbon Dioxide and Water in the presence of Sunlight and Chlorophyll.<br><br><b>Equation:</b><br><code>6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂</code><br><br>• <b>Raw Materials:</b> CO₂ (from air) and H₂O (from soil)<br>• <b>Products:</b> Glucose (stored as starch) and Oxygen gas.`;
-        } else if (query.includes('electricity') || query.includes('mcq') || query.includes('ohm')) {
-          reply += `Here is your key O/L Electricity summary:<br>• <b>Ohm's Law:</b> V = IR (Voltage = Current × Resistance)<br>• <b>Ammeters</b> are connected in Series.<br>• <b>Voltmeters</b> are connected in Parallel.<br>• <b>Electric Power:</b> P = VI = I²R = V²/R`;
-        } else if (query.includes('newton') || query.includes('motion') || query.includes('force')) {
-          reply += `<b>Newton's Laws of Motion (Mechanics):</b><br>1. <b>1st Law (Inertia):</b> Objects maintain state of rest or uniform motion unless acted on by an external unbalanced force.<br>2. <b>2nd Law:</b> Force equals mass times acceleration (<code>F = ma</code>).<br>3. <b>3rd Law:</b> To every action, there is an equal and opposite reaction.`;
-        } else if (query.includes('paper') || query.includes('tip') || query.includes('exam')) {
-          reply += `<b>O/L Science Exam Tips:</b><br>1. <b>Part I (MCQs):</b> Manage your time (approx 1 min per question). Do not leave blanks.<br>2. <b>Part II (Structured Essays):</b> Always write units with your final numerical answers (e.g., N, J, kg, ms⁻²).<br>3. <b>Diagrams:</b> Draw clear, fully labeled diagrams in biology and physics sections.`;
-        } else {
-          reply += `That is a vital topic for Grade ${currentGrade} Sri Lankan English Medium Science!<br><br>• Make sure to review the core definitions in your NIE textbook.<br>• Practice past paper questions from recent years.<br>• Check the <b>Syllabus Explorer</b> tab for detailed bullet notes!`;
-        }
-
         updateMessage(loadingId, reply);
       }, 500);
     }
 
-    function sendQuickPrompt(promptText) {
-      document.getElementById('userInput').value = promptText;
+    function sendQuickPrompt(topic) {
+      if(topic === 'photosynthesis') {
+        document.getElementById('userInput').value = currentLang === 'si' ? 'ප්‍රභාසංශ්ලේෂණය පැහැදිලි කරන්න' : 'Explain Photosynthesis';
+      } else if(topic === 'electricity') {
+        document.getElementById('userInput').value = currentLang === 'si' ? 'විදුලිය පිළිබඳ බහුවරණ ප්‍රශ්න දෙන්න' : 'Give me Electricity MCQs';
+      } else if(topic === 'newton') {
+        document.getElementById('userInput').value = currentLang === 'si' ? 'නිව්ටන් නියම පැහැදිලි කරන්න' : 'Explain Newton laws';
+      } else {
+        document.getElementById('userInput').value = currentLang === 'si' ? 'විභාගයට ලකුණු ලබාගන්නේ කෙසේද?' : 'O/L Paper Tips';
+      }
       sendMessage();
     }
 
     function appendMessage(role, text) {
       const container = document.getElementById('chatMessages');
       const id = 'msg-' + Date.now();
-      const html = `
+      container.insertAdjacentHTML('beforeend', `
         <div class="message ${role}">
           <div class="avatar ${role}"><i class="fa-solid ${role === 'ai' ? 'fa-robot' : 'fa-user'}"></i></div>
           <div class="bubble" id="${id}">${text}</div>
         </div>
-      `;
-      container.insertAdjacentHTML('beforeend', html);
+      `);
       container.scrollTop = container.scrollHeight;
       return id;
     }
 
     function updateMessage(id, newText) {
       const el = document.getElementById(id);
-      if (el) {
-        el.innerHTML = newText;
-      }
+      if (el) el.innerHTML = newText;
     }
 
-    // ==================== SYLLABUS VIEW ====================
     function loadSyllabusView() {
       const listContainer = document.getElementById('topicListContainer');
       const detailContainer = document.getElementById('topicDetailContainer');
-      const topics = SYLLABUS_DATA[currentGrade] || SYLLABUS_DATA["11"];
+      const gradeTopics = SYLLABUS_DATA[currentLang][currentGrade] || SYLLABUS_DATA[currentLang]["11"];
 
       listContainer.innerHTML = `<h4 style="margin-bottom:8px;">Grade ${currentGrade} Topics</h4>`;
-      topics.forEach((t, idx) => {
+      gradeTopics.forEach((t, idx) => {
         listContainer.innerHTML += `
           <div class="topic-item ${idx === 0 ? 'active' : ''}" onclick="selectTopic('${t.id}')">
-            <div class="topic-item-title">${t.title}</div>
-            <div class="topic-item-sub">${t.summary}</div>
+            <div style="font-weight:700; font-size:0.9rem;">${t.title}</div>
+            <div style="font-size:0.75rem; opacity:0.8; margin-top:4px;">${t.summary}</div>
           </div>
         `;
       });
 
-      if (topics.length > 0) {
-        selectTopic(topics[0].id);
-      } else {
-        detailContainer.innerHTML = `<p>No local notes loaded yet for Grade ${currentGrade}. Switch to Grade 10 or 11 for detailed notes!</p>`;
-      }
+      if (gradeTopics.length > 0) selectTopic(gradeTopics[0].id);
     }
 
     function selectTopic(topicId) {
-      const topics = SYLLABUS_DATA[currentGrade] || SYLLABUS_DATA["11"];
-      const topic = topics.find(t => t.id === topicId);
+      const gradeTopics = SYLLABUS_DATA[currentLang][currentGrade] || SYLLABUS_DATA[currentLang]["11"];
+      const topic = gradeTopics.find(t => t.id === topicId);
       if (!topic) return;
 
-      document.querySelectorAll('.topic-item').forEach(el => el.classList.remove('active'));
-      event?.currentTarget?.classList.add('active');
-
-      const detailContainer = document.getElementById('topicDetailContainer');
-      detailContainer.innerHTML = `
+      document.getElementById('topicDetailContainer').innerHTML = `
         <h2>${topic.title}</h2>
-        <p style="color:var(--text-muted); margin-bottom:16px;">Sri Lanka NIE English Medium Syllabus - Grade ${currentGrade}</p>
+        <p style="color:var(--text-muted); margin-bottom:16px;">Sri Lanka NIE Syllabus - Grade ${currentGrade}</p>
         <hr style="border:none; border-top:1px solid var(--border); margin-bottom:16px;">
         <div>${topic.notes}</div>
       `;
     }
 
-    // ==================== MCQ QUIZ VIEW ====================
     let currentQuizIndex = 0;
     let score = 0;
 
@@ -806,28 +825,26 @@
     }
 
     function renderQuestion() {
-      const q = QUIZ_DATA[currentQuizIndex];
+      const questions = QUIZ_DATA[currentLang];
+      const q = questions[currentQuizIndex];
       const container = document.getElementById('quizContainer');
 
       if (!q) {
         container.innerHTML = `
           <h2>🎉 Quiz Completed!</h2>
-          <p style="margin: 16px 0; font-size: 1.1rem;">Your Score: <b>${score} / ${QUIZ_DATA.length}</b></p>
-          <button class="btn btn-primary" onclick="loadQuizView()">Try Again</button>
+          <p style="margin: 16px 0;">Score: <b>${score} / ${questions.length}</b></p>
+          <button class="btn" onclick="loadQuizView()">Try Again</button>
         `;
         return;
       }
 
       let optionsHtml = '';
       q.options.forEach((opt, idx) => {
-        optionsHtml += `<button class="option-btn" onclick="checkAnswer(${idx})"><span>${idx + 1}. ${opt}</span></button>`;
+        optionsHtml += `<button class="option-btn" onclick="checkAnswer(${idx})">${idx + 1}. ${opt}</button>`;
       });
 
       container.innerHTML = `
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-          <span style="font-size:0.85rem; font-weight:700; color:var(--primary);">Question ${currentQuizIndex + 1} of ${QUIZ_DATA.length}</span>
-          <span style="font-size:0.85rem; color:var(--text-muted);">Grade 11 Science MCQ</span>
-        </div>
+        <div style="font-size:0.85rem; font-weight:700; color:var(--primary); margin-bottom:8px;">Question ${currentQuizIndex + 1} of ${questions.length}</div>
         <h3 style="margin-bottom:16px;">${q.question}</h3>
         <div>${optionsHtml}</div>
         <div id="quizFeedback" style="margin-top:16px; display:none;"></div>
@@ -835,7 +852,8 @@
     }
 
     function checkAnswer(selectedIdx) {
-      const q = QUIZ_DATA[currentQuizIndex];
+      const questions = QUIZ_DATA[currentLang];
+      const q = questions[currentQuizIndex];
       const buttons = document.querySelectorAll('.option-btn');
 
       buttons.forEach((btn, idx) => {
@@ -846,15 +864,13 @@
 
       const feedback = document.getElementById('quizFeedback');
       feedback.style.display = 'block';
-
       if (selectedIdx === q.answer) {
         score++;
-        feedback.innerHTML = `<p style="color:#16a34a; font-weight:700;">✅ Correct!</p><p style="font-size:0.9rem; margin-top:4px;">${q.explanation}</p>`;
+        feedback.innerHTML = `<p style="color:#16a34a; font-weight:700;">✅ Correct! / නිවැරදියි!</p><p style="font-size:0.9rem; margin-top:4px;">${q.explanation}</p>`;
       } else {
-        feedback.innerHTML = `<p style="color:#dc2626; font-weight:700;">❌ Incorrect.</p><p style="font-size:0.9rem; margin-top:4px;">${q.explanation}</p>`;
+        feedback.innerHTML = `<p style="color:#dc2626; font-weight:700;">❌ Incorrect. / වැරදියි.</p><p style="font-size:0.9rem; margin-top:4px;">${q.explanation}</p>`;
       }
-
-      feedback.innerHTML += `<br><button class="btn btn-primary" onclick="nextQuestion()">Next Question <i class="fa-solid fa-arrow-right"></i></button>`;
+      feedback.innerHTML += `<br><button class="btn" style="margin-top:8px;" onclick="nextQuestion()">Next <i class="fa-solid fa-arrow-right"></i></button>`;
     }
 
     function nextQuestion() {
@@ -862,24 +878,21 @@
       renderQuestion();
     }
 
-    // ==================== FORMULAS VIEW ====================
     function loadFormulasView() {
       const grid = document.getElementById('cheatGrid');
       grid.innerHTML = '';
-
-      FORMULA_DATA.forEach(item => {
+      FORMULA_DATA[currentLang].forEach(item => {
         grid.innerHTML += `
           <div class="cheat-card">
-            <span style="font-size:0.75rem; font-weight:700; color:var(--secondary); text-transform:uppercase;">${item.category}</span>
-            <h4>${item.title}</h4>
+            <span style="font-size:0.75rem; font-weight:700; color:var(--secondary);">${item.category}</span>
+            <h4 style="margin:4px 0;">${item.title}</h4>
             <div class="formula-box">${item.formula}</div>
-            <p style="font-size:0.8rem; color:var(--text-muted);">Units: ${item.unit}</p>
+            <p style="font-size:0.8rem; color:var(--text-muted);">${item.unit}</p>
           </div>
         `;
       });
     }
 
-    // Initial Load
     loadSyllabusView();
   </script>
 </body>
