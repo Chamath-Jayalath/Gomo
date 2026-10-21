@@ -176,18 +176,25 @@
     </div>
   </main>
 
-  <script>
+ <!-- Google Gen AI Official SDK -->
+  <script type="importmap">
+    {
+      "imports": {
+        "@google/genai": "https://esm.run/@google/genai"
+      }
+    }
+  </script>
+
+  <script type="module">
+    import { GoogleGenAI } from "@google/genai";
+
     let currentGrade = '11';
     let currentLang = 'en';
-    let apiKey = localStorage.getItem('gomo_gemini_key') || '';
 
-    if (apiKey) document.getElementById('apiKeyInput').value = apiKey;
-
-    function saveApiKey() {
+    window.saveApiKey = function() {
       const val = document.getElementById('apiKeyInput').value.trim();
       localStorage.setItem('gomo_gemini_key', val);
-      apiKey = val;
-      alert(val ? 'Gemini API Key Saved Successfully! Gomo Buddy is now connected to Google AI.' : 'API Key Cleared.');
+      alert(val ? 'Gemini API Key Saved Successfully!' : 'API Key Cleared.');
     }
 
     const UI_TEXT = {
@@ -197,10 +204,7 @@
 
     const SYLLABUS_DATA = {
       en: {
-        "11": [
-          { id: "g11-1", title: "Chemical Reactions & Stoichiometry", summary: "Balancing equations and mole concept.", notes: "<h4>The Mole Concept</h4><p>Moles (n) = Mass / Molar Mass</p>" },
-          { id: "g11-2", title: "Current Electricity & Circuits", summary: "Ohm's Law and circuits.", notes: "<h4>Ohm's Law</h4><p>V = I × R</p>" }
-        ],
+        "11": [ { id: "g11-1", title: "Chemical Reactions & Stoichiometry", summary: "Balancing equations and mole concept.", notes: "<h4>The Mole Concept</h4><p>Moles (n) = Mass / Molar Mass</p>" } ],
         "10": [ { id: "g10-1", title: "Biological Diversity", summary: "Five kingdom classification.", notes: "<h4>Kingdoms</h4><p>Monera, Protista, Fungi, Plantae, Animalia</p>" } ],
         "9": [ { id: "g9-1", title: "Matter & Atomic Structure", summary: "Elements, compounds, and mixtures.", notes: "<h4>Atom</h4><p>Protons, Neutrons, Electrons.</p>" } ],
         "8": [ { id: "g8-1", title: "Plant Life & Photosynthesis", summary: "How plants make food.", notes: "<h4>Photosynthesis</h4><p>Sunlight, CO2, water.</p>" } ],
@@ -218,8 +222,8 @@
     };
 
     const FORMULA_DATA = {
-      en: [ { category: "Physics", title: "Ohm's Law", formula: "V = I × R", unit: "Volts, Amperes, Ohms" }, { category: "Physics", title: "Newton's Second Law", formula: "F = m × a", unit: "Newtons, kg, ms⁻²" } ],
-      si: [ { category: "භෞතික විද්‍යාව", title: "ඕම් නියමය", formula: "V = I × R", unit: "වෝල්ට්, ඇම්පියර්, ඕම්" }, { category: "භෞතික විද්‍යාව", title: "නිව්ටන්ගේ දෙවන නියමය", formula: "F = m × a", unit: "නිව්ටන්, කිග්‍රෑ, ms⁻²" } ]
+      en: [ { category: "Physics", title: "Ohm's Law", formula: "V = I × R", unit: "Volts, Amperes, Ohms" } ],
+      si: [ { category: "භෞතික විද්‍යාව", title: "ඕම් නියමය", formula: "V = I × R", unit: "වෝල්ට්, ඇම්පියර්, ඕම්" } ]
     };
 
     const QUIZ_DATA = {
@@ -227,7 +231,7 @@
       si: [ { question: "විදුලි ප්‍රතිරෝධය මනිනු ලබන SI ඒකකය කුමක්ද?", options: ["වෝල්ට්", "ඇම්පියර්", "ඕම්", "ජූල්"], answer: 2, explanation: "ප්‍රතිරෝධය ඕම් (Ω) වලින් මනිනු ලබයි." } ]
     };
 
-    function updateUIText() {
+    window.updateUIText = function() {
       const t = UI_TEXT[currentLang];
       document.getElementById('sidebarSub').innerText = t.subtitle;
       document.getElementById('navChat').innerText = t.navChat;
@@ -241,7 +245,7 @@
       document.getElementById('formulaHeader').innerText = t.formulaHeading;
     }
 
-    function onLanguageChange() {
+    window.onLanguageChange = function() {
       currentLang = document.getElementById('langSelect').value;
       updateUIText();
       loadSyllabusView();
@@ -249,12 +253,12 @@
       loadQuizView();
     }
 
-    function onGradeChange() {
+    window.onGradeChange = function() {
       currentGrade = document.getElementById('gradeSelect').value;
       loadSyllabusView();
     }
 
-    function switchView(viewName) {
+    window.switchView = function(viewName) {
       document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.view-pane').forEach(el => el.classList.remove('active'));
       event.currentTarget.classList.add('active');
@@ -265,8 +269,7 @@
       if (viewName === 'formulas') loadFormulasView();
     }
 
-    // REAL GEMINI AI INTEGRATION
-    async function sendMessage() {
+    window.sendMessage = async function() {
       const input = document.getElementById('userInput');
       const text = input.value.trim();
       if (!text) return;
@@ -275,25 +278,18 @@
       input.value = '';
 
       const loadingId = appendMessage('ai', '<i>Gomo Buddy is thinking / සිතමින් සිටී...</i>');
+      const savedKey = localStorage.getItem('gomo_gemini_key') || document.getElementById('apiKeyInput').value.trim();
 
-      if (apiKey) {
-        // Call Google Gemini API directly
+      if (savedKey) {
         try {
-          const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              contents: [{
-                parts: [{
-                  text: `You are Gomo Buddy, an expert AI science tutor for Sri Lankan students following the NIE English/Sinhala Medium syllabus from Grade 6 to Grade 11 (O/L). The user is asking about Grade ${currentGrade} Science. They may type in English, Sinhala, or Singlish. Answer accurately in a friendly tone using the requested language or matching their Singlish style:\n\n${text}`
-                }]
-              }]
-            })
+          const ai = new GoogleGenAI({ apiKey: savedKey });
+          const response = await ai.models.generateContent({
+            model: 'gemini-2.5-flash',
+            contents: `You are Gomo Buddy, an expert AI science tutor for Sri Lankan students following the NIE English/Sinhala Medium syllabus from Grade 6 to Grade 11 (O/L). The user is asking about Grade ${currentGrade} Science. They may type in English, Sinhala, or Singlish. Answer accurately in a friendly tone:\n\n${text}`,
           });
 
-          const data = await response.json();
-          if (data.candidates && data.candidates[0].content.parts[0].text) {
-            let aiReply = data.candidates[0].content.parts[0].text
+          if (response && response.text) {
+            let aiReply = response.text
               .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
               .replace(/\*(.*?)\*/g, '<i>$1</i>')
               .replace(/\n/g, '<br>');
@@ -301,26 +297,18 @@
             return;
           }
         } catch (err) {
-          console.warn("API call error, falling back to smart guide.");
+          console.error("Gemini SDK Error:", err);
         }
       }
 
-      // Smart Fallback if no API key is provided
+      // Fallback
       setTimeout(() => {
-        let reply = `<b>[Gomo Buddy Guide - Grade ${currentGrade} Science]:</b><br><br>`;
-        const q = text.toLowerCase();
-        if (q.includes('photosynthesis') || q.includes('prabhasansleshanya')) {
-          reply += `<b>Photosynthesis:</b> Plants manufacture glucose using Sunlight, Water, and CO₂.<br><code>6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂</code>`;
-        } else if (q.includes('electricity') || q.includes('ohm')) {
-          reply += `<b>Ohm's Law:</b> V = I × R. Ammeters in series, Voltmeters in parallel.`;
-        } else {
-          reply += `Oya ahana "${text}" gana Grade ${currentGrade} syllabus eke godak important! Past papers walin meka ahanawa.<br><br><i>(Tip: Paste your Google AI Studio API key at the top right to enable live Google Gemini AI chat!)</i>`;
-        }
+        let reply = `<b>[Gomo Buddy Guide - Grade ${currentGrade} Science]:</b><br><br>Oya ahana "${text}" gana Grade ${currentGrade} syllabus eke godak important!<br><br><i>(Note: Please ensure a valid Google AI Studio API key is saved in the top right box).</i>`;
         updateMessage(loadingId, reply);
       }, 500);
     }
 
-    function sendQuickPrompt(topic) {
+    window.sendQuickPrompt = function(topic) {
       const qBox = document.getElementById('userInput');
       if(topic === 'photosynthesis') qBox.value = 'Explain photosynthesis or prabhasansleshanya';
       else if(topic === 'electricity') qBox.value = 'Explain electricity and ohm law';
@@ -362,7 +350,7 @@
       if (gradeTopics.length > 0) selectTopic(gradeTopics[0].id);
     }
 
-    function selectTopic(topicId) {
+    window.selectTopic = function(topicId) {
       const gradeTopics = SYLLABUS_DATA[currentLang][currentGrade] || SYLLABUS_DATA[currentLang]["11"];
       const topic = gradeTopics.find(t => t.id === topicId);
       if (!topic) return;
@@ -377,7 +365,7 @@
     let currentQuizIndex = 0;
     let score = 0;
 
-    function loadQuizView() {
+    window.loadQuizView = function() {
       currentQuizIndex = 0; score = 0; renderQuestion();
     }
 
@@ -401,7 +389,7 @@
       `;
     }
 
-    function checkAnswer(selectedIdx) {
+    window.checkAnswer = function(selectedIdx) {
       const q = QUIZ_DATA[currentLang][currentQuizIndex];
       const feedback = document.getElementById('quizFeedback');
       feedback.style.display = 'block';
@@ -414,9 +402,9 @@
       feedback.innerHTML += `<br><button class="btn" style="margin-top:8px;" onclick="nextQuestion()">Next <i class="fa-solid fa-arrow-right"></i></button>`;
     }
 
-    function nextQuestion() { currentQuizIndex++; renderQuestion(); }
+    window.nextQuestion = function() { currentQuizIndex++; renderQuestion(); }
 
-    function loadFormulasView() {
+    window.loadFormulasView = function() {
       const grid = document.getElementById('cheatGrid');
       grid.innerHTML = '';
       FORMULA_DATA[currentLang].forEach(item => {
