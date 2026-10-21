@@ -555,11 +555,11 @@
   </main>
 
   <!-- ==================== JAVASCRIPT LOGIC ==================== -->
-  <script>
+  
+     <script>
     let currentGrade = '11';
     let currentLang = 'en';
 
-    // Multilingual UI Translations
     const UI_TEXT = {
       en: {
         subtitle: "SL O/L Science AI",
@@ -571,126 +571,62 @@
         lblGrade: "Select Grade / ශ්‍රේණිය:",
         headerTitle: "Gomo Buddy - Science AI Companion",
         modeBadge: "NIE Syllabus Ready",
-        inputPlaceholder: "Ask Gomo Buddy anything about local syllabus Science...",
+        inputPlaceholder: "Ask Gomo Buddy in English or Singlish...",
         sendBtn: "Send",
-        welcome: "Ayubowan! I am <b>Gomo Buddy</b>, your Sri Lankan local syllabus Science study partner! 🇱🇰✨<br><br>How can I help you prepare for your term test or O/L exam today? Ask me any topic from Grade 6 to Grade 11 Science!",
-        selectTopicPrompt: "Select a topic from the left syllabus list to review notes.",
         formulaHeading: "Sri Lanka O/L Science Quick Revision Sheet"
       },
       si: {
         subtitle: "සා.පෙ. විද්‍යා සහායක",
         navChat: "AI ගුරු සහායක",
-        navSyllabus: "විෂয় නිර්දේශය",
+        navSyllabus: "විෂය නිර්දේශය",
         navQuiz: "බහුවරණ ප්‍රශ්න (MCQ)",
         navFormulas: "සූත්‍ර සහ ප්‍රධාන පද",
         lblLang: "භාෂාව / Language:",
         lblGrade: "ශ්‍රේණිය තෝරන්න / Grade:",
         headerTitle: "ගෝමෝ බඩී - විද්‍යා අධ්‍යයන සහායක",
         modeBadge: "ජාතික ආයතන විෂය මාලාව",
-        inputPlaceholder: "විද්‍යාව පිළිබඳ ඕනෑම ප්‍රශ්නයක් අසන්න...",
+        inputPlaceholder: "Singlish walin hari Sinhala walin hari ahanna...",
         sendBtn: "යවන්න",
-        welcome: "ආයුබෝවන්! මම <b>Gomo Buddy</b>, ඔබේ ශ්‍රී ලංකා විද්‍යා අධ්‍යයන සහායකයා! 🇱🇰✨<br><br>අද ඔබට කුමන විද්‍යා පාඩමක හෝ O/L විභාග ගැටළුවක් විසඳා ගැනීමට උදව් අවශ්‍යද?",
-        selectTopicPrompt: "සටහන් බැලීමට වම්පස ලැයිස්තුවෙන් මාතෘකාවක් තෝරන්න.",
         formulaHeading: "ශ්‍රී ලංකා O/L විද්‍යා සූත්‍ර හා කෙටි සටහන්"
       }
     };
 
-    // Syllabus Database (English & Sinhala)
     const SYLLABUS_DATA = {
       en: {
         "11": [
-          {
-            id: "g11-1",
-            title: "Chemical Reactions & Stoichiometry",
-            summary: "Balancing equations, mole concept, and calculating molar mass.",
-            notes: `<h4>1. The Mole Concept</h4><p>One mole contains 6.022 × 10<sup>23</sup> particles (Avogadro's Constant).</p><p><b>Formula:</b> Moles (n) = Mass (g) / Molar Mass (g/mol)</p>`
-          },
-          {
-            id: "g11-2",
-            title: "Current Electricity & Circuits",
-            summary: "Ohm's Law, Equivalent Resistance, and Electric Power.",
-            notes: `<h4>1. Ohm's Law</h4><p>V = I × R (Voltage = Current × Resistance)</p><p><b>Series:</b> R = R₁ + R₂</p>`
-          }
+          { id: "g11-1", title: "Chemical Reactions & Stoichiometry", summary: "Balancing equations and mole concept.", notes: "<h4>The Mole Concept</h4><p>Moles (n) = Mass / Molar Mass</p>" },
+          { id: "g11-2", title: "Current Electricity & Circuits", summary: "Ohm's Law and circuits.", notes: "<h4>Ohm's Law</h4><p>V = I × R</p>" }
         ],
-        "10": [
-          {
-            id: "g10-1",
-            title: "Biological Diversity & Classification",
-            summary: "Five kingdom classification and binomial nomenclature.",
-            notes: `<h4>Five Kingdoms</h4><ol><li>Monera</li><li>Protista</li><li>Fungi</li><li>Plantae</li><li>Animalia</li></ol>`
-          }
-        ]
+        "10": [ { id: "g10-1", title: "Biological Diversity", summary: "Five kingdom classification.", notes: "<h4>Kingdoms</h4><p>Monera, Protista, Fungi, Plantae, Animalia</p>" } ],
+        "9": [ { id: "g9-1", title: "Matter & Atomic Structure", summary: "Elements, compounds, and mixtures.", notes: "<h4>Structure of Atom</h4><p>Protons, Neutrons, Electrons.</p>" } ],
+        "8": [ { id: "g8-1", title: "Plant Life & Photosynthesis", summary: "How plants make food.", notes: "<h4>Photosynthesis</h4><p>Sunlight, CO2, and water.</p>" } ],
+        "7": [ { id: "g7-1", title: "Force & Energy", summary: "Basic types of energy and force.", notes: "<h4>Force</h4><p>Push or pull.</p>" } ],
+        "6": [ { id: "g6-1", title: "Introduction to Science", summary: "Scientific measurements.", notes: "<h4>Measurements</h4><p>Length, Mass, Time.</p>" } ]
       },
       si: {
-        "11": [
-          {
-            id: "g11-1",
-            title: "රසායනික ප්‍රතික්‍රියා සහ මෝල් සංකල්පය",
-            summary: "සමීකරණ තුලනය කිරීම, මෝල් සංකල්පය සහ මෝලර් ස්කන්ධය.",
-            notes: `<h4>1. මෝල් සංකල්පය</h4><p>මෝලක අංශු 6.022 × 10<sup>23</sup> ක් අඩංගු වේ (ඇවගඩ්‍රෝ නියුමිය).</p><p><b>සූත්‍රය:</b> මෝල් ගණන (n) = ස්කන්ධය (g) / මෝලර් ස්කන්ධය (g/mol)</p>`
-          },
-          {
-            id: "g11-2",
-            title: "ධාරා විදුලිය සහ පරිපථ",
-            summary: "ඕම් නියමය, ප්‍රතිරෝධක සහ විදුලි බලය.",
-            notes: `<h4>1. ඕම් නියමය</h4><p>V = I × ර (විභව භේදය = ධාරාව × ප්‍රතිරෝධය)</p>`
-          }
-        ],
-        "10": [
-          {
-            id: "g10-1",
-            title: "ජීවී විවිධත්වය සහ වර්ගීකරණය",
-            summary: "රාජධානි පහේ වර්ගීකරණය සහ ද්විපද නාමකරණය.",
-            notes: `<h4>රාජධානි පහ</h4><ol><li>මොනේරා</li><li>ප්‍රොටිස්ටා</li><li>දිලීර</li><li>ප්ලාන්ටේ</li><li>ඇනිමාලියා</li></ol>`
-          }
-        ]
+        "11": [ { id: "g11-1", title: "රසායනික ප්‍රතික්‍රියා සහ මෝල් සංකල්පය", summary: "සමීකරණ තුලනය කිරීම.", notes: "<h4>මෝල් සංකල්පය</h4><p>මෝල් ගණන = ස්කන්ධය / මෝලර් ස්කන්ධය</p>" } ],
+        "10": [ { id: "g10-1", title: "ජීවී විවිධත්වය", summary: "රාජධානි පහේ වර්ගීකරණය.", notes: "<h4>රාජධානි</h4><p>මොනේරා, ප්‍රොටිස්ටා, දිලීර, ප්ලාන්ටේ, ඇනිමාලියා</p>" } ],
+        "9": [ { id: "g9-1", title: "පදාර්ථය සහ පරමාණුක ව්‍යුහය", summary: "මූලද්‍රව්‍ය සහ මිශ්‍රණ.", notes: "<h4>පරමාණුව</h4><p>ප්‍රෝටෝන, නියුට්‍රෝන සහ ඉලෙක්ට්‍රෝන.</p>" } ],
+        "8": [ { id: "g8-1", title: "ප්‍රභාසංශ්ලේෂණය", summary: "ශාක ආහාර සකස් කරන ආකාරය.", notes: "<h4>ප්‍රභාසංශ්ලේෂණය</h4><p>හිරු එළිය, ජලය සහ කාබන්ඩයොක්සයිඩ් අවශ්‍ය වේ.</p>" } ],
+        "7": [ { id: "g7-1", title: "බලය සහ ශක්තිය", summary: "ශක්ති ප්‍රභේද සහ බලය.", notes: "<h4>බලය</h4><p>වස්තුවක් මත ක්‍රියා කරන තල්ලුවක්.</p>" } ],
+        "6": [ { id: "g6-1", title: "විද්‍යාවට හුරු වීම", summary: "විද්‍යාත්මක මිනුම්.", notes: "<h4>මිනුම්</h4><p>දිග, ස්කන්ධය, කාලය.</p>" } ]
       }
     };
 
     const FORMULA_DATA = {
       en: [
-        { category: "Physics", title: "Ohm's Law", formula: "V = I × R", unit: "V (Volts), I (Amperes), R (Ohms)" },
-        { category: "Physics", title: "Newton's Second Law", formula: "F = m × a", unit: "F (Newtons), m (kg), a (m/s²)" },
-        { category: "Chemistry", title: "Mole Formula", formula: "n = m / M", unit: "m (grams), M (g/mol)" },
-        { category: "Biology", title: "Photosynthesis", formula: "6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂", unit: "Sunlight & Chlorophyll" }
+        { category: "Physics", title: "Ohm's Law", formula: "V = I × R", unit: "Volts, Amperes, Ohms" },
+        { category: "Physics", title: "Newton's Second Law", formula: "F = m × a", unit: "Newtons, kg, ms⁻²" }
       ],
       si: [
-        { category: "භෞතික විද්‍යාව", title: "ඕම් නියමය", formula: "V = I × R", unit: "V (වෝල්ට්), I (ඇම්පියර්), R (ඕම්)" },
-        { category: "භෞතික විද්‍යාව", title: "නිව්ටන්ගේ දෙවන නියමය", formula: "F = m × a", unit: "F (නිව්ටන්), m (කිග්‍රෑ), a (ms⁻²)" },
-        { category: "රසායන විද්‍යාව", title: "මෝල් සූත්‍රය", formula: "n = m / M", unit: "ස්කන්ධය / මෝලර් ස්කන්ධය" },
-        { category: "ජීව විද්‍යාව", title: " ප්‍රභාසංශ්ලේෂණය", formula: "6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂", unit: "හිරු එළිය සහ හරිතප්‍රද ඉදිරියේ" }
+        { category: "භෞතික විද්‍යාව", title: "ඕම් නියමය", formula: "V = I × R", unit: "වෝල්ට්, ඇම්පියර්, ඕම්" },
+        { category: "භෞතික විද්‍යාව", title: "නිව්ටන්ගේ දෙවන නියමය", formula: "F = m × a", unit: "නිව්ටන්, කිග්‍රෑ, ms⁻²" }
       ]
     };
 
     const QUIZ_DATA = {
-      en: [
-        {
-          question: "What is the SI unit of Electric Resistance?",
-          options: ["Volt (V)", "Ampere (A)", "Ohm (Ω)", "Joule (J)"],
-          answer: 2,
-          explanation: "Resistance is measured in Ohms (Ω) according to Ohm's Law (V = I * R)."
-        },
-        {
-          question: "Which gas is released during photosynthesis?",
-          options: ["Carbon Dioxide", "Oxygen", "Nitrogen", "Hydrogen"],
-          answer: 1,
-          explanation: "Plants use CO2 and water in sunlight to generate Glucose and release Oxygen (O2)."
-        }
-      ],
-      si: [
-        {
-          question: "විදුලි ප්‍රතිරෝධය මනිනු ලබන SI ඒකකය කුමක්ද?",
-          options: ["වෝල්ට් (V)", "ඇම්පියර් (A)", "ඕම් (Ω)", "ජූල් (J)"],
-          answer: 2,
-          explanation: "ප්‍රතිරෝධය ඕම් (Ω) වලින් මනිනු ලබයි."
-        },
-        {
-          question: "ප්‍රභාසංශ්ලේෂණයේදී මුදාහරිනු ලබන වායුව කුමක්ද?",
-          options: ["කාබන්ඩයොක්සයිඩ්", "ඔක්සිජන්", "නයිට්‍රජන්", "හයිඩ්‍රජන්"],
-          answer: 1,
-          explanation: "ප්‍රභාසංශ්ලේෂණයේදී ග්ලුකෝස් නිෂ්පාදනය වී ඔක්සිජන් වායුව පිටවේ."
-        }
-      ]
+      en: [ { question: "What is the SI unit of Electric Resistance?", options: ["Volt", "Ampere", "Ohm", "Joule"], answer: 2, explanation: "Resistance is measured in Ohms (Ω)." } ],
+      si: [ { question: "විදුලි ප්‍රතිරෝධය මනිනු ලබන SI ඒකකය කුමක්ද?", options: ["වෝල්ට්", "ඇම්පියර්", "ඕම්", "ජූල්"], answer: 2, explanation: "ප්‍රතිරෝධය ඕම් (Ω) වලින් මනිනු ලබයි." } ]
     };
 
     function updateUIText() {
@@ -703,9 +639,7 @@
       document.getElementById('lblLang').innerText = t.lblLang;
       document.getElementById('lblGrade').innerText = t.lblGrade;
       document.getElementById('headerTitle').innerText = t.headerTitle;
-      document.getElementById('modeBadge').innerHTML = `<i class="fa-solid fa-circle-check"></i> ${t.modeBadge}`;
       document.getElementById('userInput').placeholder = t.inputPlaceholder;
-      document.getElementById('sendBtnText').innerText = t.sendBtn;
       document.getElementById('formulaHeader').innerText = t.formulaHeading;
     }
 
@@ -725,7 +659,6 @@
     function switchView(viewName) {
       document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.view-pane').forEach(el => el.classList.remove('active'));
-
       event.currentTarget.classList.add('active');
       document.getElementById('view-' + viewName).classList.add('active');
 
@@ -734,6 +667,7 @@
       if (viewName === 'formulas') loadFormulasView();
     }
 
+    // Singlish & Text Intelligent Handler
     function sendMessage() {
       const input = document.getElementById('userInput');
       const text = input.value.trim();
@@ -742,27 +676,39 @@
       appendMessage('user', text);
       input.value = '';
 
-      const loadingId = appendMessage('ai', currentLang === 'si' ? '<i>ගෝමෝ බඩී සිතමින් සිටී...</i>' : '<i>Gomo Buddy is thinking...</i>');
+      const loadingId = appendMessage('ai', '<i>Gomo Buddy is thinking / සිතමින් සිටී...</i>');
 
       setTimeout(() => {
-        let reply = currentLang === 'si' 
-          ? `<b>[ගෝමෝ බඩී අධ්‍යයන සටහන - ${currentGrade} ශ්‍රේණිය]:</b><br><br>ඔබ අසන ලද කරුණ ${currentGrade} ශ්‍රේණියට අදාළ වැදගත් විද්‍යා මාතෘකාවකි.<br><br>• විභාගය සඳහා මූලික අර්ථදැක්වීම් හොඳින් මතක තබා ගන්න.<br>• රූප සටහන් පැහැදිලිව නම් කරන්න.`
-          : `<b>[Gomo Buddy Study Guide - Grade ${currentGrade} Science]:</b><br><br>That is an important topic for Grade ${currentGrade} Sri Lankan Science!<br><br>• Make sure to review core definitions in your NIE textbook.<br>• Practice past papers and draw labeled diagrams.`;
-        
+        const query = text.toLowerCase();
+        let reply = "";
+
+        // Singlish or English keyword detection
+        if (query.includes('kohomada') || query.includes('mokada') || query.includes('aiyubowan') || query.includes('hi') || query.includes('hello')) {
+          reply = `<b>[Gomo Buddy Assistant]:</b><br><br>Ayubowan! 👋 Mama ඔიට Grade ${currentGrade} Science wala weda walata help karannam. Oyaata mona lesson ekada danaganna oone? (Photosynthesis, Electricity, Newton laws wage ekak type karanna).`;
+        } 
+        else if (query.includes('photosynthesis') || query.includes('prabhasansleshanya') || query.includes('shaka')) {
+          reply = `<b>[Photosynthesis / ප්‍රභාසංශ්ලේෂණය]:</b><br><br>Green plants manufacture food using Sunlight, Chlorophyll, Water and CO₂.<br><b>Equation:</b> <code>6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂</code><br><br>ශාක හිරු එළිය, ජලය සහ කාබන්ඩයොක්සයිඩ් භාවිතයෙන් ග්ලුකෝස් සකස් කිරීම මෙහිදී සිදු වේ.`;
+        } 
+        else if (query.includes('electricity') || query.includes('viduliya') || query.includes('ohm')) {
+          reply = `<b>[Electricity / ධාරා විදුලිය]:</b><br><br>• <b>Ohm's Law:</b> V = I × R<br>• Ammeters are connected in Series.<br>• Voltmeters are connected in Parallel.<br><br>ඕම් නියමය අනුව විභව භේදය (V) = ධාරාව (I) × ප්‍රතිරෝධය (R වේ.`;
+        } 
+        else if (query.includes('newton') || query.includes('balaya') || query.includes('force')) {
+          reply = `<b>[Newton's Laws / නිව්ටන් නියම]:</b><br><br>1. <b>1st Law:</b> Law of Inertia (ජඩතාවය).<br>2. <b>2nd Law:</b> F = m × a.<br>3. <b>3rd Law:</b> Every action has an equal and opposite reaction (ක්‍රියාවට සමාන ප්‍රතික්‍රියාවක් ඇත).`;
+        } 
+        else {
+          reply = `<b>[Grade ${currentGrade} Science Guide]:</b><br><br>Oya ahana liyala thiyena "${text}" kiyna ekata අනුව, Grade ${currentGrade} syllabus eke meka godak wadagath! <br><br>• Past papers walin meka hamadama wage ahanawa.<br>• Short notes liyala lassanata practice karanna!`;
+        }
+
         updateMessage(loadingId, reply);
       }, 500);
     }
 
     function sendQuickPrompt(topic) {
-      if(topic === 'photosynthesis') {
-        document.getElementById('userInput').value = currentLang === 'si' ? 'ප්‍රභාසංශ්ලේෂණය පැහැදිලි කරන්න' : 'Explain Photosynthesis';
-      } else if(topic === 'electricity') {
-        document.getElementById('userInput').value = currentLang === 'si' ? 'විදුලිය පිළිබඳ බහුවරණ ප්‍රශ්න දෙන්න' : 'Give me Electricity MCQs';
-      } else if(topic === 'newton') {
-        document.getElementById('userInput').value = currentLang === 'si' ? 'නිව්ටන් නියම පැහැදිලි කරන්න' : 'Explain Newton laws';
-      } else {
-        document.getElementById('userInput').value = currentLang === 'si' ? 'විභාගයට ලකුණු ලබාගන්නේ කෙසේද?' : 'O/L Paper Tips';
-      }
+      const qBox = document.getElementById('userInput');
+      if(topic === 'photosynthesis') qBox.value = 'Photosynthesis or Prabasansleshanya';
+      else if(topic === 'electricity') qBox.value = 'Electricity and Ohm law';
+      else if(topic === 'newton') qBox.value = 'Newton laws of motion';
+      else qBox.value = 'O/L science paper tips';
       sendMessage();
     }
 
@@ -862,15 +808,17 @@
         if (idx === selectedIdx && selectedIdx !== q.answer) btn.classList.add('incorrect');
       });
 
-      const feedback = document.getElementById('quizFeedback');
-      feedback.style.display = 'block';
-      if (selectedIdx === q.answer) {
-        score++;
-        feedback.innerHTML = `<p style="color:#16a34a; font-weight:700;">✅ Correct! / නිවැරදියි!</p><p style="font-size:0.9rem; margin-top:4px;">${q.explanation}</p>`;
-      } else {
-        feedback.innerHTML = `<p style="color:#dc2626; font-weight:700;">❌ Incorrect. / වැරදියි.</p><p style="font-size:0.9rem; margin-top:4px;">${q.explanation}</p>`;
+      const feedback = document.getElementById('quizHeader') || document.getElementById('quizFeedback');
+      if(feedback) {
+        feedback.style.display = 'block';
+        if (selectedIdx === q.answer) {
+          score++;
+          feedback.innerHTML = `<p style="color:#16a34a; font-weight:700;">✅ Correct! / නිවැරදියි!</p><p style="font-size:0.9rem; margin-top:4px;">${q.explanation}</p>`;
+        } else {
+          feedback.innerHTML = `<p style="color:#dc2626; font-weight:700;">❌ Incorrect. / වැරදියි.</p><p style="font-size:0.9rem; margin-top:4px;">${q.explanation}</p>`;
+        }
+        feedback.innerHTML += `<br><button class="btn" style="margin-top:8px;" onclick="nextQuestion()">Next <i class="fa-solid fa-arrow-right"></i></button>`;
       }
-      feedback.innerHTML += `<br><button class="btn" style="margin-top:8px;" onclick="nextQuestion()">Next <i class="fa-solid fa-arrow-right"></i></button>`;
     }
 
     function nextQuestion() {
